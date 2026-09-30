@@ -1,54 +1,343 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHADOW WORKS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHADOW WORKS — Digital Studio</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+body {
+  background: #050505;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
 
-    h1 {
-      font-size: clamp(60px, 13vw, 180px);
-      letter-spacing: -0.07em;
-      font-weight: 700;
-    }
+/* =========================
+   NAV
+========================= */
 
-    p {
-      margin-top: 20px;
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      opacity: 0.6;
-    }
-  </style>
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.menu {
+  font-size: 12px;
+  letter-spacing: .12em;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  height: 190vh;
+  position: relative;
+}
+
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* grid */
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: .13;
+  background-image:
+    linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(700px) rotateX(55deg) scale(2);
+  transform-origin: center bottom;
+}
+
+/* glowing object */
+
+.orb {
+  position: absolute;
+  width: 32vw;
+  height: 32vw;
+  max-width: 520px;
+  max-height: 520px;
+  min-width: 220px;
+  min-height: 220px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #ffffff 0%,
+      #d9d9d9 7%,
+      #555 28%,
+      #111 58%,
+      #000 75%
+    );
+
+  box-shadow:
+    0 0 80px rgba(255,255,255,.13),
+    inset -40px -40px 80px rgba(0,0,0,.9);
+
+  filter: blur(.2px);
+  transform: translateY(15vh) scale(.5);
+  opacity: .9;
+}
+
+/* typography */
+
+.hero-title {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  mix-blend-mode: difference;
+}
+
+.hero-title h1 {
+  font-size: clamp(64px, 15vw, 210px);
+  line-height: .78;
+  letter-spacing: -.085em;
+  font-weight: 800;
+}
+
+.hero-title .sub {
+  margin-top: 35px;
+  font-size: 11px;
+  letter-spacing: .25em;
+  opacity: .65;
+}
+
+/* scroll hint */
+
+.scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  font-size: 9px;
+  letter-spacing: .25em;
+  opacity: .55;
+}
+
+/* =========================
+   STATEMENT
+========================= */
+
+.statement {
+  min-height: 100vh;
+  background: #f2f2f0;
+  color: #080808;
+
+  display: flex;
+  align-items: center;
+  padding: 12vw 7vw;
+}
+
+.statement-inner {
+  max-width: 1300px;
+}
+
+.statement small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .2em;
+  margin-bottom: 40px;
+  opacity: .5;
+}
+
+.statement h2 {
+  font-size: clamp(52px, 10vw, 150px);
+  line-height: .88;
+  letter-spacing: -.07em;
+}
+
+.statement p {
+  max-width: 500px;
+  margin-top: 55px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* mobile */
+
+@media (max-width: 700px) {
+
+  .nav {
+    padding: 0 18px;
+  }
+
+  .grid {
+    background-size: 45px 45px;
+  }
+
+  .hero-title h1 {
+    font-size: 20vw;
+  }
+
+  .orb {
+    width: 65vw;
+    height: 65vw;
+  }
+
+  .statement {
+    padding: 22vw 8vw;
+  }
+
+  .statement h2 {
+    font-size: 16vw;
+  }
+
+  .statement p {
+    font-size: 14px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <div>
-      <h1>SHADOW<br>WORKS</h1>
-      <p>WEB DESIGN / DIGITAL / BRANDING</p>
+<!-- NAV -->
+
+<nav class="nav">
+  <div class="logo">SHADOW WORKS</div>
+  <div class="menu">MENU</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-sticky">
+
+    <div class="grid"></div>
+
+    <div class="orb"></div>
+
+    <div class="hero-title">
+      <h1>
+        SHADOW<br>
+        WORKS
+      </h1>
+
+      <div class="sub">
+        DIGITAL STUDIO / WEB / BRANDING
+      </div>
     </div>
-  </section>
+
+    <div class="scroll">
+      SCROLL TO EXPLORE ↓
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STATEMENT -->
+
+<section class="statement">
+
+  <div class="statement-inner">
+
+    <small>01 / PHILOSOPHY</small>
+
+    <h2>
+      WE BUILD<br>
+      DIFFERENT<br>
+      WORLDS.
+    </h2>
+
+    <p>
+      Different businesses need different experiences.
+      We design websites that reflect the character,
+      purpose and people behind each brand.
+    </p>
+
+  </div>
+
+</section>
+
+
+<script>
+
+const hero = document.querySelector(".hero");
+const orb = document.querySelector(".orb");
+const title = document.querySelector(".hero-title");
+const grid = document.querySelector(".grid");
+
+window.addEventListener("scroll", () => {
+
+  const rect = hero.getBoundingClientRect();
+
+  const progress = Math.min(
+    Math.max(-rect.top / (hero.offsetHeight - window.innerHeight), 0),
+    1
+  );
+
+  /* orb */
+
+  const scale = .5 + progress * 1.8;
+
+  orb.style.transform =
+    `translateY(${15 - progress * 45}vh) scale(${scale}) rotate(${progress * 180}deg)`;
+
+  /* title */
+
+  const titleScale = 1 - progress * .55;
+
+  title.style.transform =
+    `translateY(${-progress * 35}vh) scale(${titleScale})`;
+
+  title.style.opacity =
+    1 - progress * .75;
+
+  /* grid */
+
+  grid.style.transform =
+    `perspective(700px)
+     rotateX(${55 - progress * 15}deg)
+     scale(${2 + progress * .5})
+     translateY(${progress * 80}px)`;
+
+});
+
+</script>
 
 </body>
 </html>
